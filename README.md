@@ -8,6 +8,16 @@ A live, interactive "control room" for this pipeline, in [`/landing`](./landing)
 
 Live site: https://kafka-login-stream.vercel.app
 
+| Hero live stream | Control room (spike traffic) |
+|:---:|:---:|
+| ![Hero](./docs/landing/hero.gif) | ![Control room](./docs/landing/control-room.gif) |
+
+| Opt-in session analytics | 3D fan-out |
+|:---:|:---:|
+| ![Analytics](./docs/landing/analytics.gif) | ![3D fan-out](./docs/landing/river3d.png) |
+
+Full page:
+
 ![Kafka pipeline control room, full page](./docs/landing/fullpage-light.png)
 
 Run locally: `cd landing && npm install && npm run dev`, then open http://localhost:3000
