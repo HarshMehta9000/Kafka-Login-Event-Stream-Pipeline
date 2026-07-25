@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f4f7fb;
+  --fg: #0b1220;
+  --muted: #56657a;
+  --border: rgba(11, 18, 32, 0.1);
+  --brand: #0891b2;
+  --brand-soft: rgba(8, 145, 178, 0.1);
+  --canvas: #0a0f17;
+  --canvas-2: #0e1521;
+  --grid: rgba(140, 170, 200, 0.07);
+  --ios: #0891b2;
+  --android: #059669;
+  --missing: #d97706;
+  --dropped: #e11d48;
+  --warn: #d97706;
+  --ok: #059669;
+}
+
+.dark {
+  --bg: #0a0e14;
+  --bg-subtle: #111722;
+  --fg: #e6edf6;
+  --muted: #8b9bb0;
+  --border: rgba(255, 255, 255, 0.1);
+  --brand: #22d3ee;
+  --brand-soft: rgba(34, 211, 238, 0.12);
+  --canvas: #060a10;
+  --canvas-2: #0b121c;
+  --grid: rgba(120, 160, 200, 0.06);
+  --ios: #22d3ee;
+  --android: #34d399;
+  --missing: #f59e0b;
+  --dropped: #fb7185;
+  --warn: #f59e0b;
+  --ok: #34d399;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-line: var(--border);
+  --color-canvas: var(--canvas);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+* { border-color: var(--border); }
+html { scroll-behavior: smooth; background: var(--bg); scroll-padding-top: 5rem; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--brand); color: #04141a; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 4px; }
+.font-mono { font-family: var(--font-jetbrains), ui-monospace, monospace; }
+.text-brand { color: var(--brand); }
+
+/* Always-dark ops canvas viewport */
+.ops {
+  background:
+    linear-gradient(var(--canvas), var(--canvas)),
+    radial-gradient(60% 80% at 50% 0%, rgba(34, 211, 238, 0.08), transparent 70%);
+  color: #dbe6f2;
+}
+.ops-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.surface { background: var(--bg-subtle); border: 1px solid var(--border); }
+.dock { background: color-mix(in srgb, var(--canvas) 86%, transparent); border: 1px solid rgba(140,170,200,0.12); }
+
+.route-ios { color: var(--ios); }
+.route-android { color: var(--android); }
+.route-missing { color: var(--missing); }
+.route-dropped { color: var(--dropped); }
+
+.hero-glow::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(44rem 26rem at 50% -10%, var(--brand-soft), transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes pulse-ring { 0% { transform: scale(.8); opacity: .7 } 100% { transform: scale(2.2); opacity: 0 } }
+@keyframes flow-dash { to { stroke-dashoffset: -24; } }
+@keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+.caret { display:inline-block; width:7px; background: var(--brand); margin-left:2px; animation: blink 1s steps(1) infinite; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }

@@ -2,6 +2,16 @@
 
 A real-time streaming pipeline that ingests user login events from Kafka, routes them by device platform (iOS / Android / missing data), and delivers them to downstream topic-specific consumers. Built with Confluent Kafka, Python, and Docker.
 
+## Interactive Landing Page (Live)
+
+A live, interactive "control room" for this pipeline, in [`/landing`](./landing). Watch login events route in real time, tune producer rate, partitions, and consumer parallelism, fire chaos (traffic spike, kill a consumer, schema strict), and see the real `router.py` highlight the line executing for each event. Plus a 3D fan-out view and opt-in session analytics.
+
+Live site: https://kafka-login-stream.vercel.app
+
+![Kafka pipeline control room, full page](./docs/landing/fullpage-light.png)
+
+Run locally: `cd landing && npm install && npm run dev`, then open http://localhost:3000
+
 ---
 
 ## Data Flow
